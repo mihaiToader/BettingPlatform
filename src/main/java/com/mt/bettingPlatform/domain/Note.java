@@ -1,4 +1,4 @@
-package com.mkyong.domain;
+package com.mt.bettingPlatform.domain;
 
 /**
  * Created by mtoader on 7/15/2017.

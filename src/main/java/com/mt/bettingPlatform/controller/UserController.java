@@ -1,8 +1,8 @@
-package com.mkyong.controller;
+package com.mt.bettingPlatform.controller;
 
-import com.mkyong.repository.RepositoryUser;
-import com.mkyong.domain.User;
-import com.mkyong.domain.dto.UserDto;
+import com.mt.bettingPlatform.repository.UserRepository;
+import com.mt.bettingPlatform.domain.User;
+import com.mt.bettingPlatform.domain.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,15 +17,16 @@ import java.security.Principal;
 @Controller
 public class UserController {
 
-    private final RepositoryUser userDao;
+    private final UserRepository userDao;
 
     @Autowired
-    public UserController(RepositoryUser userDao) {
+    public UserController(UserRepository userDao) {
         this.userDao = userDao;
     }
 
     @PostMapping("/registerSubmit")
     public String registerSubmit(@Valid UserDto cFto, Model model, Principal principal) {
+        // TODO make use of valid annotation
         if (!cFto.getPassword().equals(cFto.getRepeatPassword())){
             model.addAttribute("tUser", new UserDto());
             model.addAttribute("error", true);

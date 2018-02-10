@@ -1,4 +1,4 @@
-package com.mkyong.domain.dto;
+package com.mt.bettingPlatform.domain.dto;
 
 import java.util.Calendar;
 

@@ -1,8 +1,8 @@
-package com.mkyong.repository;
+package com.mt.bettingPlatform.repository;
 
 import javax.transaction.Transactional;
 
-import com.mkyong.domain.User;
+import com.mt.bettingPlatform.domain.User;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -14,7 +14,7 @@ import org.springframework.data.repository.CrudRepository;
  *
  */
 @Transactional
-public interface RepositoryUser extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
     /**
      * Return the user having the passed name or null if no user is found.

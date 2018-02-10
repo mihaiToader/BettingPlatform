@@ -1,6 +1,6 @@
-package com.mkyong.controller;
+package com.mt.bettingPlatform.controller;
 
-import com.mkyong.service.iService.ServiceUser;
+import com.mt.bettingPlatform.service.iService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,11 +11,11 @@ import java.security.Principal;
 @Controller
 public class DefaultController {
 
-    private final ServiceUser serviceUser;
+    private final UserService userService;
 
     @Autowired
-    public DefaultController(ServiceUser serviceUser) {
-        this.serviceUser = serviceUser;
+    public DefaultController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/")
@@ -26,20 +26,20 @@ public class DefaultController {
     @GetMapping("/home")
     public String home(ModelMap model, Principal principal) {
         if (principal != null){
-            model.addAttribute("user", serviceUser.findByName(principal.getName()));
+            model.addAttribute("user", userService.findByName(principal.getName()));
         }
         return "views/home";
     }
 
     @GetMapping("/admin")
     public String admin(ModelMap model, Principal principal) {
-        model.addAttribute("user", serviceUser.findByName(principal.getName()));
+        model.addAttribute("user", userService.findByName(principal.getName()));
         return "views/admin";
     }
 
     @GetMapping("/about")
     public String about(ModelMap model, Principal principal) {
-        model.addAttribute("user", serviceUser.findByName(principal.getName()));
+        model.addAttribute("user", userService.findByName(principal.getName()));
         model.addAttribute("welcome", "asd");
         return "views/about";
     }
@@ -52,7 +52,7 @@ public class DefaultController {
     @GetMapping("/403")
     public String error403(ModelMap model, Principal principal) {
         if (principal != null){
-            model.addAttribute("user", serviceUser.findByName(principal.getName()));
+            model.addAttribute("user", userService.findByName(principal.getName()));
         }
         return "/error/403";
     }

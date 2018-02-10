@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:fragment="header-css">
-        <title>Nooooote</title>
+        <title>BettingPlatform</title>
         <!-- this is header-css -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -26,10 +26,8 @@
     <div class="w3-bar w3-green">
         <a href="#" th:href="@{/home}" class="w3-bar-item w3-button w3-mobile">Home</a>
         <th:block th:if="${user}">
-            <a href="#" th:href="@{/user}" class="w3-bar-item w3-button w3-mobile">My notes</a>
-            <a href="#" th:href="@{/user/addNote}" class="w3-bar-item w3-button w3-mobile">Add note</a>
             <th:block th:if="${user.isAdmin}">
-                <a href="#" th:href="@{/admin/seeAllNotes}" class="w3-bar-item w3-button w3-mobile">See all notes</a>
+                <a href="#" th:href="@{/admin/addGame}" class="w3-bar-item w3-button w3-mobile">Add game</a>
             </th:block>
         </th:block>
         <th:block th:if="${user}">

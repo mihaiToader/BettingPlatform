@@ -1,4 +1,4 @@
-package com.mkyong.config;
+package com.mt.bettingPlatform.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

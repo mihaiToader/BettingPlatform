@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<br /><br />
+<div class="container" style="width: 80%">
+    <div th:if="${gameCreated}" class="alert alert-success" role="alert">
+        <strong>Well done!</strong> You successfully add a game.
+    </div>
+    <div th:if="${error1}">
+        <div class="alert alert-danger">
+            First team can not be empty
+        </div>
+    </div>
+    <div th:if="${error2}">
+        <div class="alert alert-danger">
+            Second team can not be empty
+        </div>
+    </div>
+    <div class="card">
+        <h3 class="card-header">Add game</h3>
+        <div class="card-block">
+            <form th:action="@{/admin/addGameSubmit}" method="post" th:object="${gameDto}">
+                <div class="form-group">
+                    <label for="inputTeamA">Team A</label>
+                    <input type="text" class="form-control" id="inputTeamA" placeholder="Enter first team name" name="teamA" />
+                </div>
+                <div class="form-group">
+                    <label for="inputTeamB">Team B</label>
+                    <input type="text" class="form-control" id="inputTeamB" placeholder="Enter second team name" name="teamB" />
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+<!-- /.container -->
+<div th:replace="fragments/footer/footer :: footer"/>
+
+</body>
+</html>

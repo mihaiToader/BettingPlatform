@@ -1,7 +1,7 @@
-package com.mkyong.service;
+package com.mt.bettingPlatform.service;
 
-import com.mkyong.repository.RepositoryUser;
-import com.mkyong.domain.User;
+import com.mt.bettingPlatform.repository.UserRepository;
+import com.mt.bettingPlatform.domain.User;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,10 +15,10 @@ import java.util.List;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private RepositoryUser userRepository;
+    private UserRepository userRepository;
 
 
-    public UserDetailsServiceImpl(RepositoryUser userRepository) {
+    public UserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
