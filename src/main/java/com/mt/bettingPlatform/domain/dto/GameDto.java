@@ -10,9 +10,9 @@ public class GameDto {
     @NotNull
     private String teamB;
 
-    private Integer endingScoreTeamA;
+    private int endingScoreTeamA = 0;
 
-    private Integer endingScoreTeamB;
+    private int endingScoreTeamB = 0;
 
     @NotNull
     private boolean finished;
@@ -33,19 +33,19 @@ public class GameDto {
         this.teamB = teamB;
     }
 
-    public Integer getEndingScoreTeamA() {
+    public int getEndingScoreTeamA() {
         return endingScoreTeamA;
     }
 
-    public void setEndingScoreTeamA(Integer endingScoreTeamA) {
+    public void setEndingScoreTeamA(int endingScoreTeamA) {
         this.endingScoreTeamA = endingScoreTeamA;
     }
 
-    public Integer getEndingScoreTeamB() {
+    public int getEndingScoreTeamB() {
         return endingScoreTeamB;
     }
 
-    public void setEndingScoreTeamB(Integer endingScoreTeamB) {
+    public void setEndingScoreTeamB(int endingScoreTeamB) {
         this.endingScoreTeamB = endingScoreTeamB;
     }
 

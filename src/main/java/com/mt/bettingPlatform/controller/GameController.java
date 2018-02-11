@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -54,5 +55,29 @@ public class GameController {
         model.addAttribute("user", user);
         model.addAttribute("gameDto", null);
         return "views/addGame";
+    }
+
+    @GetMapping("/admin/updateGame/{gameId}")
+    public String updateGame(Model model, Principal principal, @PathVariable long gameId)
+    {
+        model.addAttribute("user", userService.findByName(principal.getName()));
+        Game game = gameService.findById(gameId);
+        if (game.isFinished()) {
+            game = null;
+        }
+        model.addAttribute("gameDto", game);
+        return "views/updateGame";
+    }
+
+    @PostMapping("/admin/updateGameSubmit/{gameId}")
+    public String updateGameSubmit(Game game, Model model, Principal principal, @PathVariable long gameId)
+    {
+        Game toUpdateGame = gameService.findById(gameId);
+        toUpdateGame.setFinished(true);
+        toUpdateGame.setEndingScoreTeamA(game.getEndingScoreTeamA());
+        toUpdateGame.setEndingScoreTeamB(game.getEndingScoreTeamB());
+        gameService.saveGame(toUpdateGame);
+
+        return "redirect:/home";
     }
 }

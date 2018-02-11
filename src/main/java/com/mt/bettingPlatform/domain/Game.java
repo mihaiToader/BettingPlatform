@@ -1,7 +1,6 @@
 package com.mt.bettingPlatform.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -23,9 +22,9 @@ public class Game {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar created;
 
-    private Integer endingScoreTeamA;
+    private int endingScoreTeamA = 0;
 
-    private Integer endingScoreTeamB;
+    private int endingScoreTeamB = 0;
 
     private boolean finished = false;
 
@@ -56,19 +55,19 @@ public class Game {
         this.teamB = teamB;
     }
 
-    public Integer getEndingScoreTeamA() {
+    public int getEndingScoreTeamA() {
         return endingScoreTeamA;
     }
 
-    public void setEndingScoreTeamA(Integer endingScoreTeamA) {
+    public void setEndingScoreTeamA(int endingScoreTeamA) {
         this.endingScoreTeamA = endingScoreTeamA;
     }
 
-    public Integer getEndingScoreTeamB() {
+    public int getEndingScoreTeamB() {
         return endingScoreTeamB;
     }
 
-    public void setEndingScoreTeamB(Integer endingScoreTeamB) {
+    public void setEndingScoreTeamB(int endingScoreTeamB) {
         this.endingScoreTeamB = endingScoreTeamB;
     }
 
@@ -78,5 +77,15 @@ public class Game {
 
     public void setFinished(boolean finished) {
         this.finished = finished;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Game) {
+            if (this.id == ((Game) obj).getId()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

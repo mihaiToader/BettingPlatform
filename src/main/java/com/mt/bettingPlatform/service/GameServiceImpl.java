@@ -24,4 +24,9 @@ public class GameServiceImpl implements GameService {
     public Iterable<Game> findAll() {
         return gameRepository.findAll();
     }
+
+    @Override
+    public Game findById(long id) {
+        return gameRepository.findOne(id);
+    }
 }

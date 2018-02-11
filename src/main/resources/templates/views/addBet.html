@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<br /><br />
+<div class="container" style="width: 80%">
+    <div th:if="${gameDto == null}">
+        <div class="alert alert-danger">
+            Maybe the game or the bet is not found!
+        </div>
+    </div>
+    <div class="card" th:if="${gameDto}">
+        <h3 class="card-header">Place a bet</h3>
+        <div class="card-block">
+            <form th:action="@{'/user/addBetSubmit/' + ${gameDto.id}}" method="post" th:object="${betDto}">
+                <input th:if="${betDto}" type="hidden" name="id" th:value="${betDto.id}"/>
+                <table class="table">
+                    <thead class="thead-default">
+                    <tr>
+                        <th th:text="${gameDto.teamA}"></th>
+                        <th>Equal</th>
+                        <th th:text="${gameDto.teamB}"></th>
+                        <th>Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <input type="radio" name="type" th:value="${T(com.mt.bettingPlatform.domain.Bet.Type).TeamA}"
+                                   th:checked="${betDto != null and T(com.mt.bettingPlatform.domain.Bet.Type).TeamA == betDto.type}"
+                            />
+                        </td>
+                        <td>
+                            <input type="radio" name="type" th:value="${T(com.mt.bettingPlatform.domain.Bet.Type).Equal}"
+                                   th:checked="${betDto != null and T(com.mt.bettingPlatform.domain.Bet.Type).Equal == betDto.type}"
+                            />
+                        </td>
+                        <td>
+                            <input type="radio" name="type" th:value="${T(com.mt.bettingPlatform.domain.Bet.Type).TeamB}"
+                                   th:checked="${betDto != null and T(com.mt.bettingPlatform.domain.Bet.Type).TeamB == betDto.type}"
+                            />
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <input type="number" min="0" name="amount" id="amount" class="form-control input-lg"
+                                       required="true" aria-describedby="basic-addon3" th:value="${betDto != null ? betDto.amount : ''}"/>
+                                <span class="input-group-addon" id="basic-addon3">lei</span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-primary">Bet</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+<!-- /.container -->
+<div th:replace="fragments/footer/footer :: footer"/>
+
+</body>
+</html>

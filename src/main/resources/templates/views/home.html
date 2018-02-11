@@ -10,11 +10,50 @@
 
 <div class="container">
 
-    <h1>Welcome!</h1>
-    <br />
-    <h3>-----------------------</h3>
-    <br />
-    <img src="../../static/images/joke-99-bugs.jpg" th:src="@{http://media02.hongkiat.com/programming-jokes/joke-99-bugs.jpg}" alt="Asds"/>
+    <h2>In progress</h2>
+    <table class="table">
+        <thead class="thead-inverse">
+        <tr>
+            <th>#</th>
+            <th>Game</th>
+            <th>Bet</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="progressGame,iter : ${progressGames}">
+            <th scope="row" th:text="${iter.count}"></th>
+            <td th:text="${progressGame.teamA  + ' - ' + progressGame.teamB}"></td>
+            <td th:if="${user}">
+                <th:block th:if="${!user.isAdmin}">
+                    <th:block th:if="${bets.containsKey(progressGame)}" th:with="bet=${bets.get(progressGame)}">
+                        <div th:text="${bet.amount + ' lei on ' + T(com.mt.bettingPlatform.domain.Bet).getTeamNameFromType(bet.type, bet.game)}"></div>
+                        <a th:href="@{'/user/updateBet/' + ${bet.id}}"  class="btn btn-success">UpdateBet</a>
+                    </th:block>
+                    <a th:if="${!bets.containsKey(progressGame)}" th:href="@{'/user/addBet/' + ${progressGame.id}}"  class="btn btn-primary">Bet</a>
+                </th:block>
+                <a th:if="${user.isAdmin}" th:href="@{'/admin/updateGame/' + ${progressGame.id}}"  class="btn btn-primary">Update</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Finished</h2>
+    <table class="table">
+        <thead class="thead-default">
+        <tr>
+            <th>#</th>
+            <th>Game</th>
+            <th>Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="finishedGame,iter : ${finishedGames}">
+            <th scope="row" th:text="${iter.count}"></th>
+            <td th:text="${finishedGame.teamA + ' - ' + finishedGame.teamB}"></td>
+            <td th:text="${finishedGame.endingScoreTeamA + ' - ' + finishedGame.endingScoreTeamB}"></td>
+        </tr>
+        </tbody>
+    </table>
 
 </div>
 <!-- /.container -->

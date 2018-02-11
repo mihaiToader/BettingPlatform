@@ -7,4 +7,6 @@ public interface GameService {
     Game saveGame(Game game);
 
     Iterable<Game> findAll();
+
+    Game findById(long id);
 }

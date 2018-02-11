@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<br /><br />
+<div class="container" style="width: 80%">
+    <div th:if="${gameDto == null}">
+        <div class="alert alert-danger">
+            No game found!
+        </div>
+    </div>
+    <div class="card" th:if="${gameDto}">
+        <h3 class="card-header">Update game</h3>
+        <div class="card-block">
+            <form th:action="@{'/admin/updateGameSubmit/' + ${gameDto.id}}" method="post" th:object="${gameDto}">
+                <table class="table">
+                    <thead class="thead-default">
+                    <tr>
+                        <th>Game</th>
+                        <th>Score Team A</th>
+                        <th>Score Team B</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${gameDto.teamA + ' - ' + gameDto.teamB}"></td>
+                        <td>
+                            <input type="number" min="0" name="endingScoreTeamA" id="endingScoreTeamA" class="form-control input-lg"
+                                   required="true" th:value="${endingScoreTeamA}"/>
+                        </td>
+                        <td>
+                            <input type="number" min="0" name="endingScoreTeamB" id="endingScoreTeamB" class="form-control input-lg"
+                                   required="true" th:value="${endingScoreTeamB}"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-primary">Set score</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+<!-- /.container -->
+<div th:replace="fragments/footer/footer :: footer"/>
+
+</body>
+</html>
