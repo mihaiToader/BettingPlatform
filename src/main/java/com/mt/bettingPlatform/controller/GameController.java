@@ -76,7 +76,7 @@ public class GameController {
         toUpdateGame.setFinished(true);
         toUpdateGame.setEndingScoreTeamA(game.getEndingScoreTeamA());
         toUpdateGame.setEndingScoreTeamB(game.getEndingScoreTeamB());
-        gameService.saveGame(toUpdateGame);
+        gameService.updateGame(toUpdateGame);
 
         return "redirect:/home";
     }

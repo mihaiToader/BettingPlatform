@@ -15,32 +15,32 @@
         </div>
     </div>
     <div class="card" th:if="${gameDto}">
-        <h3 class="card-header">Place a bet</h3>
+        <div class="card-header title-h3">Place a bet</div>
         <div class="card-block">
             <form th:action="@{'/user/addBetSubmit/' + ${gameDto.id}}" method="post" th:object="${betDto}">
                 <input th:if="${betDto}" type="hidden" name="id" th:value="${betDto.id}"/>
                 <table class="table">
                     <thead class="thead-default">
                     <tr>
-                        <th th:text="${gameDto.teamA}"></th>
-                        <th>Equal</th>
-                        <th th:text="${gameDto.teamB}"></th>
-                        <th>Amount</th>
+                        <th th:text="${gameDto.teamA}" class="text-center"></th>
+                        <th class="text-center">Equal</th>
+                        <th th:text="${gameDto.teamB}" class="text-center"></th>
+                        <th class="text-center">Amount</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>
+                        <td class="text-center">
                             <input type="radio" name="type" th:value="${T(com.mt.bettingPlatform.domain.Bet.Type).TeamA}"
                                    th:checked="${betDto != null and T(com.mt.bettingPlatform.domain.Bet.Type).TeamA == betDto.type}"
                             />
                         </td>
-                        <td>
+                        <td class="text-center">
                             <input type="radio" name="type" th:value="${T(com.mt.bettingPlatform.domain.Bet.Type).Equal}"
                                    th:checked="${betDto != null and T(com.mt.bettingPlatform.domain.Bet.Type).Equal == betDto.type}"
                             />
                         </td>
-                        <td>
+                        <td class="text-center">
                             <input type="radio" name="type" th:value="${T(com.mt.bettingPlatform.domain.Bet.Type).TeamB}"
                                    th:checked="${betDto != null and T(com.mt.bettingPlatform.domain.Bet.Type).TeamB == betDto.type}"
                             />
@@ -55,7 +55,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <button type="submit" class="btn btn-primary">Bet</button>
+                <button type="submit" class="btn btn-primary bet-button">Bet</button>
             </form>
         </div>
     </div>

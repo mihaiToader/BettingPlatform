@@ -47,7 +47,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="finishedGame,iter : ${finishedGames}">
+        <tr th:each="finishedGame,iter : ${finishedGames}" class="finished-game">
+            <form th:action="@{'/user/bets/' + ${finishedGame.id}}" method="get">
+            </form>
             <th scope="row" th:text="${iter.count}"></th>
             <td th:text="${finishedGame.teamA + ' - ' + finishedGame.teamB}"></td>
             <td th:text="${finishedGame.endingScoreTeamA + ' - ' + finishedGame.endingScoreTeamB}"></td>

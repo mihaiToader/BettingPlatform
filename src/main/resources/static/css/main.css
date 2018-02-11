@@ -29,3 +29,24 @@ footer{
 	width: 80%;
 	align-content: center;
 }
+
+.finished-game {
+	cursor: pointer;
+}
+
+.link-without-underline {
+	text-decoration: none !important;
+}
+
+.title-h3 {
+	font-size: 24px;
+}
+
+.footer-version {
+	font-size: 14px;
+	text-align: right;
+}
+
+.bet-button {
+	cursor: pointer;
+}

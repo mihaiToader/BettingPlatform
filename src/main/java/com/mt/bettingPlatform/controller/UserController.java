@@ -3,6 +3,7 @@ package com.mt.bettingPlatform.controller;
 import com.mt.bettingPlatform.repository.UserRepository;
 import com.mt.bettingPlatform.domain.User;
 import com.mt.bettingPlatform.domain.dto.UserDto;
+import com.mt.bettingPlatform.service.iService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +18,11 @@ import java.security.Principal;
 @Controller
 public class UserController {
 
-    private final UserRepository userDao;
+    private final UserService userService;
 
     @Autowired
-    public UserController(UserRepository userDao) {
-        this.userDao = userDao;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping("/registerSubmit")
@@ -32,7 +33,7 @@ public class UserController {
             model.addAttribute("error", true);
             return "views/register";
         }
-        if (userDao.findByName(cFto.getName()) != null){
+        if (userService.findByName(cFto.getName()) != null){
             model.addAttribute("tUser", new UserDto());
             model.addAttribute("error2", true);
             return "views/register";
@@ -41,7 +42,7 @@ public class UserController {
         User user = null;
         try {
             user = new User(cFto.getPassword(), cFto.getName());
-            userDao.save(user);
+            userService.saveUser(user);
         }
         catch (Exception ex) {
             return "Error creating the user: " + ex.toString();

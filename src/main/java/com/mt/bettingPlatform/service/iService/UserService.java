@@ -7,4 +7,6 @@ import com.mt.bettingPlatform.domain.User;
  */
 public interface UserService {
     User findByName(String name);
+
+    User saveUser(User user);
 }

@@ -9,4 +9,6 @@ public interface GameService {
     Iterable<Game> findAll();
 
     Game findById(long id);
+
+    Game updateGame(Game game);
 }

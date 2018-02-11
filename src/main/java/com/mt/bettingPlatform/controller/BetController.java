@@ -28,8 +28,7 @@ public class BetController {
     }
 
     @GetMapping("/user/addBet/{gameId}")
-    public String addBet(Model model, Principal principal, @PathVariable long gameId)
-    {
+    public String addBet(Model model, Principal principal, @PathVariable long gameId) {
         Game game = gameService.findById(gameId);
         if (game.isFinished()) {
             game = null;
@@ -40,8 +39,7 @@ public class BetController {
     }
 
     @GetMapping("/user/updateBet/{betId}")
-    public String updateBet(Model model, Principal principal, @PathVariable long betId)
-    {
+    public String updateBet(Model model, Principal principal, @PathVariable long betId) {
         Bet bet = betService.findById(betId);
         if (bet != null) {
             model.addAttribute("gameDto", bet.getGame());
@@ -52,8 +50,7 @@ public class BetController {
     }
 
     @PostMapping("/user/addBetSubmit/{gameId}")
-    public String addBetSubmit(Bet bet, Model model, Principal principal, @PathVariable long gameId)
-    {
+    public String addBetSubmit(Bet bet, Model model, Principal principal, @PathVariable long gameId) {
         Game game = gameService.findById(gameId);
         User user = userService.findByName(principal.getName());
         if (game == null || game.isFinished()) {
@@ -68,12 +65,36 @@ public class BetController {
             } else {
                 betService.saveBet(betToBeUpdated);
             }
-        } else if (!bet.getAmount().equals(0)){
+        } else if (!bet.getAmount().equals(0)) {
             bet.setGame(game);
             bet.setUser(user);
             betService.saveBet(bet);
         }
 
         return "redirect:/home";
+    }
+
+    @GetMapping("/user/bets/{gameId}")
+    public String getBetsForGame(Model model, Principal principal, @PathVariable long gameId) {
+        Game game = gameService.findById(gameId);
+        if (!game.isFinished()) {
+            game = null;
+        } else {
+            model.addAttribute("winningBets", betService.findAllWonBetsByGame(game));
+            model.addAttribute("losingBets", betService.findAllLostBetsByGame(game));
+        }
+
+        model.addAttribute("game", game);
+        model.addAttribute("user", userService.findByName(principal.getName()));
+
+        return "views/gameBets";
+    }
+
+    @GetMapping("/admin/bet/pay/{isPaying}/{betId}")
+    public String payBetsForGame(Model model, Principal principal, @PathVariable boolean isPaying, @PathVariable long betId) {
+        Bet bet = betService.findById(betId);
+        bet.setPaid(isPaying);
+        betService.saveBet(bet);
+        return "redirect:/user/bets/" + bet.getGame().getId();
     }
 }

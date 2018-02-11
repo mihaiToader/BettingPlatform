@@ -28,27 +28,23 @@ public class Bet {
 
     private Integer amount;
 
+    private Integer amountWin;
+
+    private Integer total;
+
     private Type type;
 
     private boolean win = false;
 
     private boolean finished = false;
 
+    private boolean paid = false;
+
     public enum Type {
         TeamA, TeamB, Equal
     }
 
     public Bet() {
-    }
-
-    public Bet(long id, Calendar created, Game game, User user, Integer amount, boolean win, boolean finished) {
-        this.id = id;
-        this.created = created;
-        this.game = game;
-        this.user = user;
-        this.amount = amount;
-        this.win = win;
-        this.finished = finished;
     }
 
     public Long getId() {
@@ -123,5 +119,29 @@ public class Bet {
             return game.getTeamB();
         }
         return "Equal";
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
+    }
+
+    public Integer getAmountWin() {
+        return amountWin;
+    }
+
+    public void setAmountWin(Integer amountWin) {
+        this.amountWin = amountWin;
+    }
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
     }
 }

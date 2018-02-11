@@ -22,4 +22,14 @@ public class UserServiceImpl implements UserService {
     public User findByName(String name) {
         return userRepository.findByName(name);
     }
+
+    @Override
+    public User saveUser(User user) {
+        if (userRepository.getAdminNumbers().equals(0)) {
+            user.setAdmin(true);
+        }
+        return userRepository.save(user);
+    }
+
+
 }
