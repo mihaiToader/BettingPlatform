@@ -30,6 +30,38 @@
             </tr>
             </tbody>
         </table>
+    </th:block>
+
+    <th:block th:if="${game != null and !game.finished}">
+        <h2>All bets</h2>
+        <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Paid</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bet,iter : ${allBets}">
+                <th scope="row" th:text="${iter.count}"></th>
+                <td th:text="${bet.user.name}"></td>
+                <td th:text="${bet.amount}"></td>
+                <td th:if="${!user.isAdmin}" th:text="${bet.paid ? 'YES' : 'NO'}"></td>
+                <td th:if="${user.isAdmin}">
+                    <a th:if="${!bet.paid}" th:href="@{'/admin/bet/pay/true/' + ${bet.id }}"
+                       class="btn btn-primary">Pay</a>
+                    <a th:if="${bet.paid}" th:href="@{'/admin/bet/pay/false/' + ${bet.id}}" class="btn btn-danger">Reset
+                        Pay</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </th:block>
+
+    <th:block th:if="${game != null and game.finished}">
+
 
         <h2>Winners</h2>
         <table class="table">
@@ -40,7 +72,8 @@
                 <th>Amount</th>
                 <th>Win</th>
                 <th>Total</th>
-                <th>Paid</th>
+                <th th:if="${!everythingWasPay}">Paid</th>
+                <th th:if="${everythingWasPay}">Received total</th>
             </tr>
             </thead>
             <tbody>
@@ -50,12 +83,19 @@
                 <td th:text="${bet.amount}"></td>
                 <td th:text="${bet.amountWin}"></td>
                 <td th:text="${bet.total}"></td>
-                <td th:if="${!user.isAdmin}" th:text="${bet.paid ? 'YES' : 'NO'}"></td>
-                <td th:if="${user.isAdmin}">
+                <td th:if="${!user.isAdmin and !everythingWasPay}" th:text="${bet.paid ? 'YES' : 'NO'}"></td>
+                <td th:if="${user.isAdmin and !everythingWasPay}">
                     <a th:if="${!bet.paid}" th:href="@{'/admin/bet/pay/true/' + ${bet.id }}"
                        class="btn btn-primary">Pay</a>
                     <a th:if="${bet.paid}" th:href="@{'/admin/bet/pay/false/' + ${bet.id}}" class="btn btn-danger">Reset
                         Pay</a>
+                </td>
+                <td th:if="${!user.isAdmin and everythingWasPay}" th:text="${bet.paidWinning ? 'YES' : 'NO'}"></td>
+                <td th:if="${user.isAdmin and everythingWasPay}">
+                    <a th:if="${!bet.paidWinning}" th:href="@{'/admin/bet/payWinning/true/' + ${bet.id }}"
+                       class="btn btn-primary">Received</a>
+                    <a th:if="${bet.paidWinning}" th:href="@{'/admin/bet/payWinning/false/' + ${bet.id}}" class="btn btn-danger">Reset
+                        Not received</a>
                 </td>
             </tr>
             </tbody>
@@ -68,7 +108,7 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Amount</th>
-                <th>Paid</th>
+                <th th:if="${!everythingWasPay}">Paid</th>
             </tr>
             </thead>
             <tbody>
@@ -76,8 +116,8 @@
                 <th scope="row" th:text="${iter.count}"></th>
                 <td th:text="${bet.user.name}"></td>
                 <th th:text="${bet.amount}"></th>
-                <td th:if="${!user.isAdmin}" th:text="${bet.paid ? 'YES' : 'NO'}"></td>
-                <td th:if="${user.isAdmin}">
+                <td th:if="${!user.isAdmin and !everythingWasPay}" th:text="${bet.paid ? 'YES' : 'NO'}"></td>
+                <td th:if="${user.isAdmin and !everythingWasPay}">
                     <a th:if="${!bet.paid}" th:href="@{'/admin/bet/pay/true/' + ${bet.id }}"
                        class="btn btn-primary">Pay</a>
                     <a th:if="${bet.paid}" th:href="@{'/admin/bet/pay/false/' + ${bet.id}}" class="btn btn-danger">Reset

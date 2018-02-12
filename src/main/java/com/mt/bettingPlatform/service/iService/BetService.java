@@ -6,12 +6,13 @@ import com.mt.bettingPlatform.domain.User;
 
 import java.util.ArrayList;
 
-public interface BetService {
+public interface BetService
+{
     Bet saveBet(Bet bet);
 
     Bet findById(long id);
 
-    Iterable<Bet> getByGame(long gameId);
+    ArrayList<Bet> getByGame(Game game);
 
     Iterable<Bet> getByUser(User user);
 
@@ -24,4 +25,6 @@ public interface BetService {
     ArrayList<Bet> findAllWonBetsByGame(Game g);
 
     ArrayList<Bet> findAllLostBetsByGame(Game g);
+
+    boolean allBetsWerePay(ArrayList<Bet> bets);
 }
