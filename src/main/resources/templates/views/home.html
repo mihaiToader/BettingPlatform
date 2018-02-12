@@ -29,7 +29,7 @@
                 <th:block th:if="${!user.isAdmin}">
                     <th:block th:if="${bets.containsKey(progressGame)}" th:with="bet=${bets.get(progressGame)}">
                         <div th:text="${bet.amount + ' lei on ' + T(com.mt.bettingPlatform.domain.Bet).getTeamNameFromType(bet.type, bet.game)}"></div>
-                        <a th:href="@{'/user/updateBet/' + ${bet.id}}"  class="btn btn-success">UpdateBet</a>
+                        <a th:if="${!bet.paid}" th:href="@{'/user/updateBet/' + ${bet.id}}"  class="btn btn-success">UpdateBet</a>
                     </th:block>
                     <a th:if="${!bets.containsKey(progressGame)}" th:href="@{'/user/addBet/' + ${progressGame.id}}"  class="btn btn-primary">Bet</a>
                 </th:block>

@@ -11,16 +11,36 @@
 
     <div class="card border-primary mb-3 bet-aboutUs-card">
         <div class="card-header">Cum functioneaza?</div>
-        <div class="card-body text-primary bet-aboutUs-card-body">
-            <h5 class="card-title">Primary card title</h5>
+        <div class="card-body bet-aboutUs-card-body">
             <p class="card-text">Primul user care se inregistreaza are rolul de admin si are responsabilitatea sa:</p>
             <ul class="list-group">
                 <li class="list-group-item">Adauge meciuri</li>
                 <li class="list-group-item">Adauge scorurile la final</li>
                 <li class="list-group-item">Colecteze bani pentru pariuri</li>
+                <li class="list-group-item">Inmaneze bani castigatorilor</li>
             </ul>
-            <p class="card-text">Useri normali pot sa puna pariuri pe un meci si au dreptul de a-si modifica pariul</p>
-            <p class="card-text">Daca se adauga un pariu cu valoarea 0, acel pariu nu se salveaza</p>
+            <br/>
+            <p class="card-text">
+                Useri normali pot sa puna pariuri pe un meci si au dreptul de a-si modifica pariul (in cazul in care nu au platit).
+                <br/>
+                Daca se adauga un pariu cu valoarea 0, acel pariu nu se salveaza
+            </p>
+            <br/>
+            <h5 class="card-title">Cum se calculeaza castigul?</h5>
+            <br/>
+            <p class="card-text">
+                Pentru fiecare pariu, se calculeaza procentul pe care il reprezinta in valoarea totala a pariurilor castigatoare. <br />
+                Acel procent este primit de catre parior din valoarea totala a pariurilor pierdute.
+            </p>
+
+            <br/>
+            <h5 class="card-title">S-ar putea sa fie bug-uri :(</h5>
+            <br/>
+            <p class="card-text">
+                <a class="text-success" href="https://github.com/mihaiToader/BettingPlatform">Pentru imbunatatiri si sugestii</a>
+            </p>
+
+
 
         </div>
     </div>

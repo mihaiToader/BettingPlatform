@@ -73,7 +73,7 @@ public class BetController
             {
                 betService.deleteBet(bet.getId());
             }
-            else
+            else if (!bet.isPaid())
             {
                 betService.saveBet(betToBeUpdated);
             }
