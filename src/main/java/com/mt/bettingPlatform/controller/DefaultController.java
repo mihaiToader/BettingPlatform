@@ -70,8 +70,9 @@ public class DefaultController {
 
     @GetMapping("/about")
     public String about(ModelMap model, Principal principal) {
-        model.addAttribute("user", userService.findByName(principal.getName()));
-        model.addAttribute("welcome", "asd");
+        if (principal != null) {
+            model.addAttribute("user", userService.findByName(principal.getName()));
+        }
         return "views/about";
     }
 

@@ -9,11 +9,21 @@
 
 <div class="container">
 
-    <div class="starter-template">
-        <h1>Normal page (No need login)</h1>
-        <span th:text="'Message:' + ${welcome}"></span>
-    </div>
+    <div class="card border-primary mb-3 bet-aboutUs-card">
+        <div class="card-header">Cum functioneaza?</div>
+        <div class="card-body text-primary bet-aboutUs-card-body">
+            <h5 class="card-title">Primary card title</h5>
+            <p class="card-text">Primul user care se inregistreaza are rolul de admin si are responsabilitatea sa:</p>
+            <ul class="list-group">
+                <li class="list-group-item">Adauge meciuri</li>
+                <li class="list-group-item">Adauge scorurile la final</li>
+                <li class="list-group-item">Colecteze bani pentru pariuri</li>
+            </ul>
+            <p class="card-text">Useri normali pot sa puna pariuri pe un meci si au dreptul de a-si modifica pariul</p>
+            <p class="card-text">Daca se adauga un pariu cu valoarea 0, acel pariu nu se salveaza</p>
 
+        </div>
+    </div>
 </div>
 <!-- /.container -->
 
