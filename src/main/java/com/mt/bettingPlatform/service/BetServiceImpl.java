@@ -124,7 +124,7 @@ public class BetServiceImpl implements BetService
         {
             return Bet.Type.TeamB;
         }
-        return Bet.Type.Equal;
+        return Bet.Type.Draw;
     }
 
     private Integer getTotalAmountFromBets(ArrayList<Bet> bets)

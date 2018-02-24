@@ -23,7 +23,7 @@
                     <thead class="thead-default">
                     <tr>
                         <th th:text="${gameDto.teamA}" class="text-center"></th>
-                        <th class="text-center">Equal</th>
+                        <th class="text-center">Draw</th>
                         <th th:text="${gameDto.teamB}" class="text-center"></th>
                         <th class="text-center">Amount</th>
                     </tr>
@@ -36,8 +36,8 @@
                             />
                         </td>
                         <td class="text-center">
-                            <input type="radio" name="type" th:value="${T(com.mt.bettingPlatform.domain.Bet.Type).Equal}"
-                                   th:checked="${betDto != null and T(com.mt.bettingPlatform.domain.Bet.Type).Equal == betDto.type}"
+                            <input type="radio" name="type" th:value="${T(com.mt.bettingPlatform.domain.Bet.Type).Draw}"
+                                   th:checked="${betDto != null and T(com.mt.bettingPlatform.domain.Bet.Type).Draw == betDto.type}"
                             />
                         </td>
                         <td class="text-center">

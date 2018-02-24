@@ -45,7 +45,7 @@ public class Bet
 
     public enum Type
     {
-        TeamA, TeamB, Equal
+        TeamA, TeamB, Draw
     }
 
     public Bet()
@@ -142,7 +142,7 @@ public class Bet
         {
             return game.getTeamB();
         }
-        return "Equal";
+        return "Draw";
     }
 
     public boolean isPaid()
